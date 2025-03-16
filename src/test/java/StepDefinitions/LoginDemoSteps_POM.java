@@ -1,19 +1,25 @@
 //package StepDefinitions;
 //
-//import io.cucumber.java.en.*;
+//import io.cucumber.java.en.And;
+//import io.cucumber.java.en.Given;
+//import io.cucumber.java.en.Then;
+//import io.cucumber.java.en.When;
 //import org.junit.Assert;
 //import org.openqa.selenium.By;
 //import org.openqa.selenium.WebDriver;
 //import org.openqa.selenium.chrome.ChromeDriver;
 //import org.openqa.selenium.support.ui.ExpectedConditions;
 //import org.openqa.selenium.support.ui.WebDriverWait;
+//import pages.LoginPage;
 //
 //import java.time.Duration;
 //
 //
-//public class LoginDemoSteps {
+//public class LoginDemoSteps_POM {
 //
 //    WebDriver driver;
+//
+//    LoginPage loginPage;
 //
 //
 //    @Given("browser is open")
@@ -27,7 +33,7 @@
 //        driver = new ChromeDriver();
 //
 //        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-//        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
+//        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
 //
 //        driver.manage().window().maximize();
 //    }
@@ -40,20 +46,26 @@
 //        // Instead of Thread.Sleep(2000);
 //        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 //        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("username")));
-//
 //    }
 //
 //    @When("^User enters (.*) and (.*)$")
 //    public void user_enters_username_and_password(String username, String password) {
 //        System.out.println("Inside Step : User enters username and password - " + username + " | " + password);
-//        driver.findElement(By.id("name")).sendKeys(username);
-//        driver.findElement(By.id("password")).sendKeys(password);
+////        driver.findElement(By.id("username")).sendKeys(username);
+////        driver.findElement(By.id("password")).sendKeys(password);
+//
+//        loginPage = new LoginPage(driver);
+//
+//        loginPage.enterUsername(username);
+//        loginPage.enterPassword(password);
+//
 //    }
 //
 //    @And("user clicks on login")
 //    public void user_clicks_on_login() throws InterruptedException {
 //        System.out.println("Inside Step : User clicks on login");
-//        driver.findElement(By.id("submit")).click();
+////        driver.findElement(By.id("submit")).click();
+//        loginPage.login();
 //        Thread.sleep(2000);
 //    }
 //

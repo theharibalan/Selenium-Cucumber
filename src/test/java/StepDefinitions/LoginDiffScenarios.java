@@ -54,19 +54,28 @@ public class LoginDiffScenarios {
     @Then("User is navigated to the home page")
     public void user_is_navigate_to_the_home_page() {
         System.out.println("Inside Step : User is navigated to the home page");
-        Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"loop-container\"]/div/article/div[2]/div/div/div/a")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.className("post-title")).isDisplayed());
         driver.quit();
     }
 
+//    @Then("An error message is displayed")
+//    public void an_error_message_is_displayed() {
+//        WebElement errorMessage = driver.findElement(By.xpath("//*[@id=\"error\"]"));
+//        Assert.assertTrue("Error message is not displayed", errorMessage.isDisplayed());
+//    }
+
     @Then("An error message is displayed")
     public void an_error_message_is_displayed() {
-        WebElement errorMessage = driver.findElement(By.xpath("//*[@id=\"error\"]"));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("error"))); // Wait for error message
+        WebElement errorMessage = driver.findElement(By.id("error"));
         Assert.assertTrue("Error message is not displayed", errorMessage.isDisplayed());
     }
 
+
+
     @And("The error message text is {string}")
     public void the_error_message_text_is(String expectedText) {
-        WebElement errorMessage = driver.findElement(By.xpath("//*[@id=\"error\"]"));
+        WebElement errorMessage = driver.findElement(By.id("error"));
         String actualText = errorMessage.getText();
         Assert.assertEquals("The message for the site", expectedText, actualText);
     }

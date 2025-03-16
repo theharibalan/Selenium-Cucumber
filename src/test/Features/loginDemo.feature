@@ -10,6 +10,7 @@
 #    Examples:
 #      | username  | password    |
 #      | student   | Password123 |
-#      | haribalan | 12345       |
-#      | rajesh    | h9uhfih     |
+#      | student   | Password123 |
+##      | haribalan | 12345       |
+##      | rajesh    | h9uhfih     |
 #
