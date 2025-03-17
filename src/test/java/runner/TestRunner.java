@@ -11,7 +11,10 @@ import org.junit.runner.RunWith;
                 "html:target/HTMLReports/reports.html",
                 "json:target/JSONReports/reports.json"
         },
-tags = "@smoketest")
+tags = "@smoketest",
+publish = true)
+
+
 public class TestRunner {
 
 }
