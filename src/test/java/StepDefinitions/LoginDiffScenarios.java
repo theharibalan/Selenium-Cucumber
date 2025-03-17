@@ -1,6 +1,8 @@
 package StepDefinitions;
 
 import Pages.LoginPage;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.*;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
@@ -14,15 +16,35 @@ public class LoginDiffScenarios {
     WebDriverWait wait;
     LoginPage loginPage;
 
-    @Given("browser is open")
-    public void browser_is_open() {
-        System.out.println("Inside Step : browser is open");
+    @Before
+    public void browserSetup(){
+        System.out.println("Im inside browserSetup");
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\LENOVO\\Downloads\\CucumberJava\\src\\test\\resources\\drivers\\chromedriver.exe");
-        driver = new ChromeDriver();
+        driver =new ChromeDriver();
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
         driver.manage().window().maximize();
+    }
+
+    @After
+    public void tearDown(){
+//        if(driver!=null){
+//            driver.quit();
+//        }
+        driver.close();
+        driver.quit();
+    }
+
+    @Given("browser is open")
+    public void browser_is_open() {
+        System.out.println("Inside Step : browser is open");
+//        System.setProperty("webdriver.chrome.driver", "C:\\Users\\LENOVO\\Downloads\\CucumberJava\\src\\test\\resources\\drivers\\chromedriver.exe");
+//        driver = new ChromeDriver();
+//        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+//        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
+//        driver.manage().window().maximize();
         loginPage = new LoginPage(driver);
     }
 
@@ -49,7 +71,6 @@ public class LoginDiffScenarios {
     public void user_is_navigated_to_the_home_page() {
         System.out.println("Inside Step : User is navigated to the home page");
         Assert.assertTrue(loginPage.isUserOnHomePage());
-        driver.quit();
     }
 
     @Then("An error message is displayed")
